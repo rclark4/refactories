@@ -3,15 +3,15 @@ require 'csv'
 class CSVFormatWhitelist
   attr_reader :file
 
-  def self.formatted? file
-    new(file).formatted?
+  def self.includes? file
+    new(file).includes?
   end
 
   def initialize file
     @file = file
   end
 
-  def formatted?
+  def includes?
     csv? && acceptable_format?
   end
 
@@ -63,4 +63,4 @@ class LinkWhitelist < CSVFormatWhitelist
   end
 end
 
-# CSVThing.formatted?(file) && CSVThing.formatted?(file2)
+# ActivitiesWhitelist.includes?(file) && LinkWhitelist.includes?(file2)
