@@ -1,14 +1,5 @@
 require 'csv'
 
-class CampaignResultsProcessor
-  attr_accessor :activities, :links
-
-  def initialize activities, links
-    @activities = activities
-    @links = links
-  end
-end
-
 class CSVThing
   attr_reader :file
 
