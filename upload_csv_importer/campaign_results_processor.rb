@@ -3,6 +3,10 @@ require 'csv'
 class CSVThing
   attr_reader :file
 
+  def self.formatted? file
+    new(file).formatted?
+  end
+
   def initialize file
     @file = file
   end
@@ -29,3 +33,5 @@ class CSVThing
     ]
   end
 end
+
+# CSVThing.formatted?(file) && CSVThing.formatted?(file2)
