@@ -48,3 +48,11 @@ class CampaignResultsProcessor
     ["Title", "URL", "\"Unique Clicks\"", "\"Total Clicks\"", "\"Most Recent\"", "Location"]
   end
 end
+
+class CSVThing
+  attr_reader :file
+
+  def initialize file
+    @file = file
+  end
+end
