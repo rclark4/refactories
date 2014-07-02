@@ -8,14 +8,6 @@ class CampaignResultsProcessor
     @links = links
   end
 
-  def activities_csv?
-    activities.content_type == "text/csv"
-  end
-
-  def links_csv?
-    links.content_type == "text/csv"
-  end
-
   def formatted?
     activities_csv? && links_csv? && formatted_headers?
   end
@@ -54,5 +46,9 @@ class CSVThing
 
   def initialize file
     @file = file
+  end
+
+  def csv?
+    file.content_type == "text/csv"
   end
 end
