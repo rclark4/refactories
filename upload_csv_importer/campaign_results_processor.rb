@@ -33,6 +33,12 @@ class CSVFormatWhitelist
     options = { :headers => true, :col_sep => ",", :quote_char => "\x00" }
     FasterCSV.read(file.path, options)
   end
+end
+
+# example of hardcoded subclass option
+
+class CSVFormatWhitelist
+  # ...
 
   def acceptable_format?
     acceptable_formats.any? { |format| format == csv.headers.compact }
@@ -47,8 +53,6 @@ class CSVFormatWhitelist
   end
 end
 
-# example of dynamic subclass
-
 class ActivitiesWhitelist < CSVFormatWhitelist
   def acceptable_formats
     [["Email", "Date", "Activity", "Location", "\"Email Client\"", "URL", "Groups"]]
@@ -61,10 +65,23 @@ class LinkWhitelist < CSVFormatWhitelist
   end
 end
 
-# ActivitiesWhitelist.includes?(file) && LinkWhitelist.includes?(file2)
+# example of dynamic runtime subclass generation option
 
+class CSVFormatWhitelist
+  # ...
 
-# example of dynamic runtime subclass generation
+  def acceptable_format?
+    acceptable_formats.values.any? { |format| format == csv.headers.compact }
+  end
+
+  def acceptable_formats
+    {
+      "ActivitiesWhitelist" => ["Email", "Date", "Activity", "Location", "\"Email Client\"", "URL", "Groups"],
+      "LinkWhitelist" => ["Title", "URL", "\"Unique Clicks\"", "\"Total Clicks\"", "\"Most Recent\"", "Location"],
+      "MarketingWhitelist" => ["first_name", "last_name", "email", "company", "title", "street", "street2", "city", "state", "zip_code", "phone", "phone2", "home_phone", "mobile_phone", "fax", "home_fax"]
+    }
+  end
+end
 
 CSVFormatWhitelist.new.acceptable_formats.each do |klass, headers|
   Object.const_set(klass, Class.new).class_eval do
