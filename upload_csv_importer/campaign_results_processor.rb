@@ -24,13 +24,17 @@ class CSVThing
     file.content_type == "text/csv"
   end
 
-  def headers
+  def acceptable_format?
     options = { :headers => true, :col_sep => ",", :quote_char => "\x00" }
-    FasterCSV.read(file.path, options).headers.compact
+    headers = FasterCSV.read(file.path, options).headers.compact
+
+    acceptable_formats.any? { |format| format == headers }
   end
 
-  def formatted_headers
-    headers == ["Email", "Date", "Activity", "Location", "\"Email Client\"", "URL", "Groups"] ||
-    headers == ["Title", "URL", "\"Unique Clicks\"", "\"Total Clicks\"", "\"Most Recent\"", "Location"]
+  def acceptable_formats
+    [
+      ["Email", "Date", "Activity", "Location", "\"Email Client\"", "URL", "Groups"],
+      ["Title", "URL", "\"Unique Clicks\"", "\"Total Clicks\"", "\"Most Recent\"", "Location"]
+    ]
   end
 end
