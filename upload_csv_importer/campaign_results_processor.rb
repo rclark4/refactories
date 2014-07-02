@@ -79,3 +79,12 @@ CSVFormatWhitelist.new.acceptable_formats.each do |klass, headers|
     end
   end
 end
+
+# implementation example
+
+# ActivitiesWhitelist.includes? file
+# => true || false
+# LinkWhitelist.includes? file
+# => true || false
+# MarketingWhitelist.includes? file
+# => true || false
