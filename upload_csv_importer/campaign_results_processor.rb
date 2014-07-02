@@ -17,11 +17,11 @@ class CampaignResultsProcessor
   end
 
   def activities_formatted_headers?
-    headers(self.activities) == activities_formatted_headers
+    headers(activities) == activities_formatted_headers
   end
 
   def links_formatted_headers?
-    headers(self.links) == links_formatted_headers
+    headers(links) == links_formatted_headers
   end
 
   def headers(file)
