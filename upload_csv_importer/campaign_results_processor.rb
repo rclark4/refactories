@@ -9,11 +9,7 @@ class CampaignResultsProcessor
   end
 
   def formatted?
-    activities_csv? && links_csv? && formatted_headers?
-  end
-
-  def formatted_headers?
-    activities_formatted_headers? && links_formatted_headers?
+    activities_csv? && links_csv? && activities_formatted_headers? && links_formatted_headers?
   end
 
   def activities_formatted_headers?
