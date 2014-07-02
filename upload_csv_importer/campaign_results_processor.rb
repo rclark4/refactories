@@ -26,10 +26,7 @@ class CampaignResultsProcessor
 
   def headers(file)
     options = { :headers => true, :col_sep => ",", :quote_char => "\x00" }
-    csv = FasterCSV.read(file.path, options)
-    incoming_file = []
-
-    csv.headers.compact.select { |header| incoming_file << header }
+    FasterCSV.read(file.path, options).headers.compact
   end
 
   def activities_formatted_headers
