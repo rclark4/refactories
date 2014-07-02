@@ -51,17 +51,13 @@ end
 
 class ActivitiesWhitelist < CSVFormatWhitelist
   def acceptable_formats
-    [
-      ["Email", "Date", "Activity", "Location", "\"Email Client\"", "URL", "Groups"],
-    ]
+    [["Email", "Date", "Activity", "Location", "\"Email Client\"", "URL", "Groups"]]
   end
 end
 
 class LinkWhitelist < CSVFormatWhitelist
   def acceptable_formats
-    [
-      ["Title", "URL", "\"Unique Clicks\"", "\"Total Clicks\"", "\"Most Recent\"", "Location"],
-    ]
+    [["Title", "URL", "\"Unique Clicks\"", "\"Total Clicks\"", "\"Most Recent\"", "Location"]]
   end
 end
 
