@@ -7,10 +7,6 @@ class CampaignResultsProcessor
     @activities = activities
     @links = links
   end
-
-  def formatted?
-    activities_csv? && links_csv? && activities_formatted_headers? && links_formatted_headers?
-  end
 end
 
 class CSVThing
@@ -18,6 +14,10 @@ class CSVThing
 
   def initialize file
     @file = file
+  end
+
+  def formatted?
+    csv? && acceptable_format?
   end
 
   def csv?
