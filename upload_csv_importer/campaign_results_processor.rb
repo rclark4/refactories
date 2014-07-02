@@ -47,6 +47,8 @@ class CSVFormatWhitelist
   end
 end
 
+# example of dynamic subclass
+
 class ActivitiesWhitelist < CSVFormatWhitelist
   def acceptable_formats
     [
@@ -64,3 +66,16 @@ class LinkWhitelist < CSVFormatWhitelist
 end
 
 # ActivitiesWhitelist.includes?(file) && LinkWhitelist.includes?(file2)
+
+
+# example of dynamic runtime subclass generation
+
+CSVFormatWhitelist.new.acceptable_formats.each do |klass, headers|
+  Object.const_set(klass, Class.new).class_eval do
+    superclass = CSVFormatWhitelist
+
+    define_method "acceptable_formats" do
+      [headers]
+    end
+  end
+end
