@@ -1,6 +1,6 @@
 require 'csv'
 
-class CSVThing
+class CSVFormatWhitelist
   attr_reader :file
 
   def self.formatted? file
@@ -43,6 +43,22 @@ class CSVThing
       ["Email", "Date", "Activity", "Location", "\"Email Client\"", "URL", "Groups"],
       ["Title", "URL", "\"Unique Clicks\"", "\"Total Clicks\"", "\"Most Recent\"", "Location"],
       ["first_name", "last_name", "email", "company", "title", "street", "street2", "city", "state", "zip_code", "phone", "phone2", "home_phone", "mobile_phone", "fax", "home_fax"]
+    ]
+  end
+end
+
+class ActivitiesWhitelist < CSVFormatWhitelist
+  def acceptable_formats
+    [
+      ["Email", "Date", "Activity", "Location", "\"Email Client\"", "URL", "Groups"],
+    ]
+  end
+end
+
+class LinkWhitelist < CSVFormatWhitelist
+  def acceptable_formats
+    [
+      ["Title", "URL", "\"Unique Clicks\"", "\"Total Clicks\"", "\"Most Recent\"", "Location"],
     ]
   end
 end
