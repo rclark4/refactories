@@ -1,5 +1,6 @@
+require 'csv'
+
 class CampaignResultsProcessor
-  require 'csv'
   attr_accessor :activities, :links
 
   def initialize activities, links
